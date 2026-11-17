@@ -26,6 +26,12 @@
 apps/web/.next
 apps/web/out
 
+# TypeScript's incremental cache. A local `next dev` or `tsc` run leaves it
+# describing files that may no longer exist, and `next build` inside the image
+# reuses it, so the build fails type-checking on files that are not in the
+# context. CI never sees this because it builds from a clean checkout.
+**/*.tsbuildinfo
+
 # History. 17 MB of it, and no image reads it.
 .git
 .gitignore
